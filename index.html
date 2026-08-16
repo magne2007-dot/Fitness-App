@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Form</title>
+<meta name="theme-color" content="#F5F6F4">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Form">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <h1 id="page-title">Dashboard</h1>
+  <div class="sub" id="page-sub"></div>
+</header>
+
+<main>
+  <div id="view-dashboard" class="view"></div>
+  <div id="view-kcal" class="view"></div>
+  <div id="view-strength" class="view"></div>
+  <div id="view-running" class="view"></div>
+  <div id="view-cooper" class="view"></div>
+</main>
+
+<div class="sheet-backdrop" id="sheet-backdrop" onclick="if(event.target===this) closeSheet()">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="sheet-title"></div>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<nav class="tabbar">
+  <button class="tab" id="tab-dashboard" onclick="App.go('dashboard')"><span class="ic">◎</span>Dashboard</button>
+  <button class="tab" id="tab-kcal" onclick="App.go('kcal')"><span class="ic">🍽</span>Kalorier</button>
+  <button class="tab" id="tab-strength" onclick="App.go('strength')"><span class="ic">🏋</span>Styrke</button>
+  <button class="tab" id="tab-running" onclick="App.go('running')"><span class="ic">🏃</span>Løb/Cykel</button>
+  <button class="tab" id="tab-cooper" onclick="App.go('cooper')"><span class="ic">🏁</span>Cooper</button>
+</nav>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
