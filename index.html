@@ -18,17 +18,42 @@
 <body>
 
 <header class="app-header">
-  <h1 id="page-title">Dashboard</h1>
-  <div class="sub" id="page-sub"></div>
+  <div class="header-row">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="menu-btn" onclick="App.openDrawer()" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 5.5H17.5M2.5 10H17.5M2.5 14.5H17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <div>
+        <h1 id="page-title">Dashboard</h1>
+        <div class="sub" id="page-sub"></div>
+      </div>
+    </div>
+    <button class="sync-badge" id="sync-badge" onclick="Sync.openPanel()">☁ Ikke sat op</button>
+  </div>
 </header>
 
 <main>
   <div id="view-dashboard" class="view"></div>
+  <div id="view-stats" class="view"></div>
   <div id="view-kcal" class="view"></div>
   <div id="view-strength" class="view"></div>
   <div id="view-running" class="view"></div>
   <div id="view-cooper" class="view"></div>
 </main>
+
+<div class="drawer-backdrop" id="drawer-backdrop" onclick="if(event.target===this) App.closeDrawer()">
+  <nav class="drawer">
+    <div class="drawer-header">Form</div>
+    <button class="drawer-item" id="drawer-dashboard" onclick="App.go('dashboard')"><span class="ic">◎</span>Dashboard</button>
+    <button class="drawer-item" id="drawer-stats" onclick="App.go('stats')"><span class="ic">📊</span>Statistik</button>
+    <button class="drawer-item" id="drawer-kcal" onclick="App.go('kcal')"><span class="ic">🍽</span>Kalorier</button>
+    <button class="drawer-item" id="drawer-strength" onclick="App.go('strength')"><span class="ic">🏋</span>Styrke</button>
+    <button class="drawer-item" id="drawer-running" onclick="App.go('running')"><span class="ic">🏃</span>Løb/Cykel</button>
+    <button class="drawer-item" id="drawer-cooper" onclick="App.go('cooper')"><span class="ic">🏁</span>Cooper</button>
+    <div class="drawer-divider"></div>
+    <button class="drawer-item" onclick="Sync.openPanel()"><span class="ic">☁</span>Synkronisering</button>
+  </nav>
+</div>
 
 <div class="sheet-backdrop" id="sheet-backdrop" onclick="if(event.target===this) closeSheet()">
   <div class="sheet">
@@ -37,14 +62,6 @@
     <div id="sheet-body"></div>
   </div>
 </div>
-
-<nav class="tabbar">
-  <button class="tab" id="tab-dashboard" onclick="App.go('dashboard')"><span class="ic">◎</span>Dashboard</button>
-  <button class="tab" id="tab-kcal" onclick="App.go('kcal')"><span class="ic">🍽</span>Kalorier</button>
-  <button class="tab" id="tab-strength" onclick="App.go('strength')"><span class="ic">🏋</span>Styrke</button>
-  <button class="tab" id="tab-running" onclick="App.go('running')"><span class="ic">🏃</span>Løb/Cykel</button>
-  <button class="tab" id="tab-cooper" onclick="App.go('cooper')"><span class="ic">🏁</span>Cooper</button>
-</nav>
 
 <script type="module" src="js/app.js"></script>
 </body>

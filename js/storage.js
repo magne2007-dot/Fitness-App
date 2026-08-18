@@ -10,6 +10,7 @@ export const Store = {
   },
   set(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
+    if (window.__onStoreChange) window.__onStoreChange(key, value);
   },
   update(key, fallback, fn) {
     const cur = Store.get(key, fallback);
