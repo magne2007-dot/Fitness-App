@@ -38,7 +38,6 @@ body{
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
   overscroll-behavior-y:none;
-  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 12px);
 }
 button, input, select{font-family:inherit}
 button{cursor:pointer}
@@ -51,13 +50,23 @@ a{color:inherit}
   padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 12px;
   border-bottom:0.5px solid var(--border);
 }
+.header-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.menu-btn{
+  width:36px;height:36px;border-radius:99px;background:var(--surface-sunken);
+  border:none;display:flex;align-items:center;justify-content:center;color:var(--ink);flex-shrink:0;
+}
+.sync-badge{
+  font-size:10.5px;padding:6px 10px;border-radius:99px;background:var(--surface-sunken);
+  border:none;color:var(--ink-soft);font-weight:600;white-space:nowrap;max-width:140px;
+  overflow:hidden;text-overflow:ellipsis;flex-shrink:0;
+}
 .app-header h1{
   font-family:var(--font-display);
-  font-size:20px;font-weight:600;letter-spacing:-.01em;
+  font-size:19px;font-weight:600;letter-spacing:-.01em;
 }
-.app-header .sub{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.app-header .sub{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
 
-main{max-width:480px;margin:0 auto;padding:16px 16px 8px}
+main{max-width:480px;margin:0 auto;padding:16px 16px 32px}
 .view{display:none;animation:fade .18s ease}
 .view.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
@@ -125,20 +134,30 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-
 .ring-legend .dot{width:8px;height:8px;border-radius:99px;flex-shrink:0}
 .ring-legend b{color:var(--ink)}
 
-/* ===== Bottom nav ===== */
-.tabbar{
-  position:fixed;left:0;right:0;bottom:0;z-index:30;
-  display:flex;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
-  border-top:0.5px solid var(--border);
-  padding-bottom:var(--safe-bottom);
-  height:calc(var(--nav-h) + var(--safe-bottom));
+/* ===== Drawer menu ===== */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(18,22,28,.4);z-index:50;display:none}
+.drawer-backdrop.open{display:block}
+.drawer{
+  position:fixed;left:0;top:0;bottom:0;z-index:51;width:78%;max-width:300px;
+  background:var(--surface);
+  padding:calc(env(safe-area-inset-top,0px) + 20px) 14px 20px;
+  transform:translateX(-100%);transition:transform .22s ease;
+  box-shadow:2px 0 20px rgba(18,22,28,.12);
+  display:flex;flex-direction:column;gap:2px;
 }
-.tab{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  background:none;border:none;color:var(--ink-faint);font-size:10.5px;font-weight:600;
+.drawer-backdrop.open .drawer{transform:translateX(0)}
+.drawer-header{
+  font-family:var(--font-display);font-size:17px;font-weight:700;
+  padding:6px 12px 16px;letter-spacing:-.01em;
 }
-.tab .ic{font-size:20px;line-height:1}
-.tab.active{color:var(--accent)}
+.drawer-item{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  padding:12px;border-radius:var(--radius-md);border:none;background:none;
+  font-size:14.5px;font-weight:500;color:var(--ink);
+}
+.drawer-item .ic{font-size:17px;width:22px;text-align:center;flex-shrink:0}
+.drawer-item.active{background:var(--surface-sunken);color:var(--accent);font-weight:600}
+.drawer-divider{height:0.5px;background:var(--border);margin:10px 4px}
 
 /* ===== Lists ===== */
 .row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:0.5px solid var(--border)}
@@ -157,7 +176,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-
 .pill-group{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 
 .fab{
-  position:fixed;right:18px;bottom:calc(var(--nav-h) + var(--safe-bottom) + 16px);
+  position:fixed;right:18px;bottom:calc(var(--safe-bottom) + 20px);
   width:52px;height:52px;border-radius:99px;background:var(--accent);color:#fff;
   border:none;font-size:24px;box-shadow:0 4px 14px rgba(255,78,50,.35);z-index:25;
   display:flex;align-items:center;justify-content:center;
